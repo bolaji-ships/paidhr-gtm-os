@@ -1,0 +1,23 @@
+.env
+.env.*
+.treg/
+*.csv
+*.xlsx
+.DS_Store
+.claude/settings.local.json
+
+# whisper-transcriber-suite (venv, models, config)
+tools/whisper-transcriber-suite/.venv/
+tools/whisper-transcriber-suite/.profile/
+
+# added from gtm-starter-kit
+!.env.example
+clay-session.json
+.venv/
+venv/
+__pycache__/
+*.pyc
+node_modules/
+
+# third-party clone with its own git history (https://github.com/Milomilo777/whisper-transcriber-suite)
+tools/whisper-transcriber-suite/

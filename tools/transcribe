@@ -1,0 +1,17 @@
+#!/bin/sh
+# Project-scoped Whisper Transcriber Suite (https://github.com/Milomilo777/whisper-transcriber-suite).
+# Source + venv: tools/whisper-transcriber-suite/ (.venv and .profile are gitignored).
+# Config, models, cache and logs live in tools/whisper-transcriber-suite/.profile, not ~/Library.
+# Usage stats and update checks are off (see .profile/config/config.json). Runs locally, offline after model download.
+#   tools/transcribe file.mp3 [--language en] [--formats srt txt json] [--model small] [--diarization]
+#   tools/transcribe gui      (opens the desktop app)
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+APP="$ROOT/tools/whisper-transcriber-suite"
+export WTS_PROFILE_DIR="$APP/.profile"
+export DO_NOT_TRACK=1
+PY="$APP/.venv/bin/python"
+case "$1" in
+  gui) shift; exec "$PY" "$APP/gui.py" "$@" ;;
+  transcribe|serve|-h|--help) exec "$PY" "$APP/gui.py" "$@" ;;
+  *) exec "$PY" "$APP/gui.py" transcribe "$@" ;;
+esac
